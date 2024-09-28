@@ -1,0 +1,106 @@
+
+{% extends 'store/Main.html' %}
+{% block content %}
+{% load static%}
+<style>
+   body {
+   background-image: url("https://static.vecteezy.com/system/resources/previews/006/624/464/non_2x/shopping-concept-with-bags-background-illustration-eps-10-free-vector.jpg"); /* replace with your background image URL */
+   background-size: cover;
+   background-position: center;
+   height: 100vh;
+   margin: 0;
+ }
+ 
+ .container {
+   height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+ 
+ .login-card {
+   width: 400px;
+   background-color: #e7e1d8;
+   border: 1px solid #ddd;
+   border-radius: 10px;
+   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+   transition: transform 0.3s ease;
+ }
+ 
+ .login-card:hover {
+   transform: scale(1.05);
+   box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+ }
+ 
+ .login-title {
+   color: #337ab7;
+   font-weight: bold;
+   font-size: 24px;
+   margin-bottom: 20px;
+ }
+ 
+ .login-btn {
+   background-color: #337ab7;
+   color: #fff;
+   border: none;
+   padding: 10px 20px;
+   font-size: 16px;
+   cursor: pointer;
+   transition: background-color 0.3s ease;
+ }
+ 
+ .login-btn:hover {
+   background-color: #f5f7f9;
+   color:#337ab7
+ }
+ 
+ .login-btn:active {
+   transform: translateY(2px);
+ }
+ 
+ .alert-danger {
+   background-color: #f2dede;
+   border-color: #ebccd1;
+   color: #a94442;
+   padding: 10px;
+   border-radius: 5px;
+   margin-bottom: 20px;
+ }
+ 
+ .alert-danger::before {
+   content: "\f071";
+   font-family: "FontAwesome";
+   margin-right: 10px;
+ }
+ </style>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="card mb-3 login-card">
+        <div class="row g-0">
+          <div>
+            <div class="card-body">
+              <h5 class="card-title login-title">Login</h5>
+              {% if error %}
+              <div class="alert alert-danger">
+                {{ error }}
+              </div>
+              {% endif %}
+              <p class="card-text">
+                <form method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit" class="btn btn-primary login-btn">
+                    Login
+                  </button>
+                </form>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
+

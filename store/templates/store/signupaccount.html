@@ -1,0 +1,105 @@
+{% extends 'store/Main.html' %}
+{% block content %}
+<style>
+    body {
+  background-image: url('https://static.vecteezy.com/system/resources/previews/010/803/399/non_2x/background-with-colorful-shopping-bags-illustration-sale-and-discount-concept-vector.jpg'); /* replace with your background image URL */
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.signup-card {
+    width:900px;
+  background-color: #b5ccca;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  right:30%;
+  bottom:25%;
+}
+
+.signup-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+}
+
+.signup-title {
+  color: #337ab7;
+  font-weight: bold;
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.signup-btn {
+  background-color: #337ab7;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.signup-btn:hover {
+  background-color: #000000;
+  color:white
+}
+
+.signup-btn:active {
+  transform: translateY(2px);
+}
+
+.alert-danger {
+  background-color: #f2dede;
+  border-color: #ebccd1;
+  color: #a94442;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.alert-danger::before {
+  content: "\f071";
+  font-family: "FontAwesome";
+  margin-right: 10px;
+}
+</style>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card mb-3 signup-card">
+        <div class="row g-0">
+          <div>
+            <div class="card-body">
+              <h5 class="card-title signup-title">Sign Up</h5>
+              {% if error %}
+              <div class="alert alert-danger mt-3" role="alert">
+                {{ error }}
+              </div>
+              {% endif %}
+              <p class="card-text">
+                <form method="POST">
+                  {% csrf_token %}
+                  {{ form.as_p }}
+                  <button type="submit" class="btn btn-primary signup-btn">
+                    Sign Up
+                  </button>
+                </form>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

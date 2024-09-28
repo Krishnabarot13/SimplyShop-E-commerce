@@ -1,0 +1,28 @@
+{% extends 'store/Main.html' %}
+{% load static%}
+{% block content%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        {% for product in products%}
+        <div class="col-lg-4">
+            <img src="{% static 'images/store1.png' %}" class="thumbnail" alt="">
+            <div class="box-element product">
+                <h6>{{product.name}}</h6>
+                <hr>
+                <button data-product="{{product.id}}" data-action="add"  class="btn btn-outline-secondary add-btn update-cart">Add to cart</button>
+                <a href="{% url 'detail' product.id %}" class="btn btn-outline-success">View</a>
+                <h4 style="display: inline-block;float:right">{{product.price}}</h4>
+            </div>
+        </div>
+       {% endfor %}
+    </div>
+</body>
+</html>
+{%endblock content%}

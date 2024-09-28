@@ -1,0 +1,30 @@
+{% extends 'store/Main.html' %}
+{% load static%}
+{% block content%}
+<br>
+<br>
+<div class="row" style="gap:6rem">
+    <a  href="{% url 'sfilter' gender='Male'%}" class="btn col-lg-3" style="background-color: pink;border-radius: 10px;">For Him</a>
+    <a  href="{% url 'sfilter' gender='Female'%}" class="btn col-lg-3" style="background-color: pink;border-radius: 10px;">For her</a>
+    
+</div>
+<div class="container bg-white">
+    <div class="row">
+      {% for product in products%}
+      <div class="col-lg-3 col-sm-6 d-flex flex-column align-items-center justify-content-center product-item my-3">
+          <div class="product"> <img src="{{product.image.url}}" alt="">
+              <ul class="d-flex align-items-center justify-content-center list-unstyled icons">
+                <li class="icon"> <button data-product="{{product.id}}" data-action="add"  class="btn update-cart">Add to cart</button></li>
+                  <li class="icon mx-3"><a href="{% url 'detail' product.id %}" class="btn">View</a></li>
+              </ul>
+          </div>
+          <div class="title pt-4 pb-1">{{product.name}}</div>
+          <div class="d-flex align-content-center justify-content-center"> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> <span class="fas fa-star"></span> </div>
+          <div class="price">$ {{product.price}}</div>
+      </div>
+      {% endfor %}
+    </div>
+</div>
+{% endblock content%}
+    
+    
